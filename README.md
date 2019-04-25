@@ -29,13 +29,20 @@ So it does a bunch, sure, and shows you how to do requests, but it's not a very 
 
 Let's make an app that, at the very least:
 
-* Loads all the todos and displays them on the DOM.
-* Allows the user to type in a todo and click submit to add that todo to our list (and our database!).
+* Loads all the todos from the database and displays them on the DOM. (You might want to do this on webpage load, so the user doesn't have to do anything to get their todos.)
+* Allows the user to type in a todo and click submit to add that todo to our list (and to our db!).
 * Allows the user to click a todo to mark it completed, reflecting that in our database, and displaying it completed in some way on the DOM.
 
-To do this, feel free to steal _liberally_ from the code you've written before. We have several iterations of todo apps to steal from, including both yours and our solutions to this.
+To do this, feel free to steal _liberally_ from the code you've written before. We have several iterations of todo apps to steal from, including solutions of yours and ours.
+
+
+### Hints, Tips, Tricks, and Assorted Marginalia
+
+* Note that when you add a todo using POST, json-server _automagically_ adds the first integer available in the list to the `id` field. You don't have to do that yourself, and, what's more, you can _use_ that information when identifying which todo you're working with.
+* 
 
 
 ### Stretch Goals
 
-Incoming, but feel free to come up with your own!
+* Allow the user to delete finished todos. We are using GET to get all the todos, POST to put a new one in the database, and PUT to update one. But we'll have to use a new one, DELETE, to make this happen.
+* Add error handling. Try using the `onerror` property of an `xhr`, or add an `'error'` event listener. What should we do if an error occurs? Send the request again? Tell the user? What if the error gets us out of sync between what we did to the DOM and what makes its way to the database? What if something goes wrong that's not technically an XHR error, like a 404? (That's an http error! See [this little reddit thread](https://www.reddit.com/r/javascript/comments/61j4ua/xmlhttprequest_error_event_handling/) and (this MDN page)[https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/status].)
